@@ -35,7 +35,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     Bits_train = executor.map(getBin, df_train['smiles'].iloc[1:100000], chunksize=500)
 
 
-Y_train = df_train.gap.values.iloc[1:100000]
+Y_train = df_train.gap.values[1:100000]
 start = time.time()
 X_train = pd.DataFrame(Bits_train)
 X_test= pd.DataFrame(Bits_test)
@@ -53,7 +53,6 @@ X_PCA_Test = pca.transform(X_test)
 print("begin lasso CV")
 Lasso = LassoCV()
 Lasso.fit(X_PCA, Y_train)
-Lasso_pred = L
 
 print("Lasso CV done")
 def write_to_file(filename, predictions):
