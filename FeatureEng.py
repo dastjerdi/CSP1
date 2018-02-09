@@ -31,8 +31,8 @@ def getBin(smile):
     return list(map(int, fprint.ToBitString()))
 
 with concurrent.futures.ProcessPoolExecutor() as executor:
-    Bits_test = executor.map(getBin, df_test['smiles'], chunksize=50)
-    Bits_train = executor.map(getBin, df_train['smiles'].iloc[1:100000], chunksize=50)
+    Bits_test = executor.map(getBin, df_test['smiles'], chunksize=500)
+    Bits_train = executor.map(getBin, df_train['smiles'].iloc[1:100000], chunksize=500)
 
 
 Y_train = df_train.gap.values.iloc[1:100000]
