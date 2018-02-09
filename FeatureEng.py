@@ -32,10 +32,10 @@ def getBin(smile):
 
 with concurrent.futures.ProcessPoolExecutor() as executor:
     Bits_test = executor.map(getBin, df_test['smiles'], chunksize=50)
-    Bits_train = executor.map(getBin, df_train['smiles'], chunksize=50)
+    Bits_train = executor.map(getBin, df_train['smiles'].iloc[1:100000], chunksize=50)
 
 
-Y_train = df_train.gap.values
+Y_train = df_train.gap.values.iloc[1:100000]
 start = time.time()
 X_train = pd.DataFrame(Bits_train)
 X_test= pd.DataFrame(Bits_test)
